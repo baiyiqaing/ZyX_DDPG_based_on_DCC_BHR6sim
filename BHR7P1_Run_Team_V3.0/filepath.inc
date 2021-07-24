@@ -1,0 +1,1 @@
+char Workpath[300]="D:\\RTX2020\\BHR7P1_Run_Team\\RTLog";

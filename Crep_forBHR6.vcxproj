@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\control.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\BHR7_diff_inv.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\ChzCpp2C.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\chzrun_com.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\chzrun_foot.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\chzrun_MF.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\chzrun_MFsd.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\chzrun_signal.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\chz_ankle.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\chz_joints.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\CoM_Stabilizer.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\DCC_filters.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\Dcc_lib\DCC_ConFrame.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\Dcc_lib\dcc_con_base.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\Dcc_lib\dcc_Mat.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\Dcc_lib\DCC_Protection.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\Dcc_lib\DCC_RunningCon.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\DCC_motion.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\DCC_RunCon.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\DCC_Run_ReadConfig.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\DemoControl.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\eigen_pack.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\Gp.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\leeCpp2C.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\leeLegLengthControl.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\lee_control_lib\DCMWalkingUpdate.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\lee_control_lib\leeMatrix.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\lee_control_lib\leeOnLineDCMWalking.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\lee_control_lib\leeRobotConfig.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\lee_control_lib\leeRobotPlan.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\lee_control_lib\leeRobotTool.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\lee_control_lib\leeSRMotion.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\Mat_Out_1_01.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\micro.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\QP_balance.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\Resistant_Compliance.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\Tra_Generate.h" />
+    <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\Uneven_Trailblazer.h" />
+    <ClInclude Include="CRemotelib\remote_api.h" />
+    <ClInclude Include="Crep_DataExchange.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\BHR7_diff_inv.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\ChzCpp2C.cpp" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\CoM_Stabilizer.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\DCC_filters.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\Dcc_lib\Base\dcc_con_base.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\Dcc_lib\Base\dcc_FuzzyCon.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\Dcc_lib\Base\dcc_get_key.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\Dcc_lib\Base\dcc_Mat.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\Dcc_lib\Ctlr\DCC_ConFrame.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\Dcc_lib\Ctlr\DCC_RunningCon.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\Dcc_lib\DCC_Protection.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\Dcc_lib\PG\DCC_FreeWalk.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\Dcc_lib\PG\DCC_PGFrame.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\Dcc_lib\PG\MPC_unconstrained_coder_forPG\PGMPC.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\DCC_motion.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\DCC_RunCon.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\DCC_Run_ReadConfig.cpp" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\DemoControl.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\leeCpp2C.cpp" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\leeLegLengthControl.cpp" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\lee_control_lib\DCMWalkingUpdate.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\lee_control_lib\leeMatrix.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\lee_control_lib\leeOnLineDCMWalking.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\lee_control_lib\leeRobotPlan.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\lee_control_lib\leeRobotTool.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\lee_control_lib\leeSRMotion.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\QP_balance.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\Resistant_Compliance.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\Tra_Generate.c" />
+    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\Uneven_Trailblazer.c" />
+    <ClCompile Include="CRemotelib\remote_api.cpp" />
+    <ClCompile Include="Crep_DataExchange.c" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{F249CC97-71DB-449B-AA35-74DE934A2536}</ProjectGuid>
+    <RootNamespace>CrepforBHR6</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LibraryPath>C:\Program Files\V-REP3\V-REP_PRO_EDU\programming\remoteApiBindings\lib\x64\Release;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LibraryPath>C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\remoteApiBindings\lib\x64\Release;D:\BIT_zyx_BYQ\program_important\Crep_BHR7_RunNew\RunTeamLib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\BIT_zyx_BYQ\program_important\Crep_BHR7_RunNew\RunTeamLib;C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\remoteApi;C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\include;$(IncludePath)</IncludePath>
+    <ReferencePath>D:\BIT_zyx_BYQ\program_important\Crep_BHR7_RunNew\RunTeamLib;$(ReferencePath)</ReferencePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Program Files\V-REP3\V-REP_PRO_EDU\programming\common;C:\Program Files\V-REP3\V-REP_PRO_EDU\programming\include;C:\Program Files\V-REP3\V-REP_PRO_EDU\programming\remoteApi;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;NON_MATLAB_PARSING;MAX_EXT_API_CONNECTIONS=255;DO_NOT_USE_SHARED_MEMORY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>remoteApiSharedLib-64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Program Files\V-REP3\V-REP_PRO_EDU\programming\common;C:\Program Files\V-REP3\V-REP_PRO_EDU\programming\include;C:\Program Files\V-REP3\V-REP_PRO_EDU\programming\remoteApi;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;NON_MATLAB_PARSING;MAX_EXT_API_CONNECTIONS=255;DO_NOT_USE_SHARED_MEMORY;_CRT_SECURE_NO_WARNINGS;RtSetEvent=SetEvent;RtReleaseMutex=ReleaseMutex;RtOpenMutex=OpenMutex;RtOpenSharedMemory=OpenSharedMemory;RtWaitForSingleObject=WaitForSingleObject;RtCloseHandle=CloseHandle;RtOpenEvent=OpenEvent;RtOpenSemaphore=OpenSemaphore;SIMULATION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>remoteApiSharedLib-64.lib;ChzControlLib\ChzControl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
