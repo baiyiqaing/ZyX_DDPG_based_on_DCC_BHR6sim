@@ -9,12 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="头文件\CRemotelib">
-      <UniqueIdentifier>{37052f3c-7f15-4ea7-8e04-ef45e4ee29b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\CRemotelib">
-      <UniqueIdentifier>{5275d325-583c-4690-9005-ab14eb4b596e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="头文件\BHR7P1_Run_Team">
       <UniqueIdentifier>{6c98447d-4922-46cb-9f22-c798f190f928}</UniqueIdentifier>
     </Filter>
@@ -45,11 +39,20 @@
     <Filter Include="源文件\RunTeamLib">
       <UniqueIdentifier>{573a4366-a47f-4b97-8ccc-b885374c8650}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\SimulationLib">
+      <UniqueIdentifier>{fdd9da71-e7e7-497d-8a3b-1ed724b14935}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\SimulationLib">
+      <UniqueIdentifier>{9a38c8f1-bb04-477e-ba1f-9a82507a90c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\SimulationLib\Mujocolib">
+      <UniqueIdentifier>{be221f20-d6e7-4eda-8420-53ceeb234910}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\SimulationLib\CRemotelib">
+      <UniqueIdentifier>{bc553aa2-04a2-4258-ada4-26bafe7010a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CRemotelib\remote_api.h">
-      <Filter>头文件\CRemotelib</Filter>
-    </ClInclude>
     <ClInclude Include="Crep_DataExchange.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -169,9 +172,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CRemotelib\remote_api.cpp">
-      <Filter>源文件\CRemotelib</Filter>
-    </ClCompile>
     <ClCompile Include="Crep_DataExchange.c">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -264,6 +264,18 @@
     </ClCompile>
     <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\Dcc_lib\PG\DCC_FreeWalk.c">
       <Filter>源文件\BHR7P1_Run_Team\lib\Dcc_lib</Filter>
+    </ClCompile>
+    <ClCompile Include="SimulationLib\Crep_DataExchange.c">
+      <Filter>源文件\SimulationLib</Filter>
+    </ClCompile>
+    <ClCompile Include="SimulationLib\DataOnRobot.c">
+      <Filter>源文件\SimulationLib</Filter>
+    </ClCompile>
+    <ClCompile Include="SimulationLib\Mj_DataExchange.c">
+      <Filter>源文件\SimulationLib</Filter>
+    </ClCompile>
+    <ClCompile Include="SimulationLib\Mujocolib\MujocoBHR_api.cpp">
+      <Filter>源文件\SimulationLib\Mujocolib</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

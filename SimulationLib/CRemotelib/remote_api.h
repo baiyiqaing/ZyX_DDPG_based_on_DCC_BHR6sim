@@ -4,6 +4,7 @@ Header file
 bit 20201028
 */
 #pragma once
+#include <cstdio>
 
 class CRobotConfig
 {
@@ -27,6 +28,7 @@ public:
 	double dSimulationTime;
 	double dJointsPosition[50] = { 0.0 }; // for BHR6: Right 1-6, Left 1-6.
 	double dJointsVelocity[50] = { 0.0 }; // for BHR6: Right 1-6, Left 1-6.
+	double dJointsTorque[50] = { 0.0 }; // for BHR6: Right 1-6, Left 1-6.
 	double dBodyCaredPosition[20][3] = { 0.0 }; // for BHR6: Trunk, Right foot, Left foot.
 	double dBodyCaredVelocoty[20][3] = { 0.0 }; // for BHR6: Trunk, Right foot, Left foot.
 	double dBodyCaredOrientation[20][3] = { 0.0 }; // for BHR6: Trunk, Right foot, Left foot.
@@ -60,3 +62,5 @@ protected:
 	int nDataStartCount;
 	float fDataRecord[10000000L];
 };
+
+int nVrepSimUpdate();
