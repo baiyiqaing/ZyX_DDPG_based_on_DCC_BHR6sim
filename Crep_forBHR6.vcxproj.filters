@@ -53,9 +53,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Crep_DataExchange.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="BHR7P1_Run_Team_V3.0\control.h">
       <Filter>头文件\BHR7P1_Run_Team</Filter>
     </ClInclude>
@@ -172,9 +169,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Crep_DataExchange.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\lee_control_lib\DCMWalkingUpdate.c">
       <Filter>源文件\BHR7P1_Run_Team\lib\lee_control_lib</Filter>
     </ClCompile>
@@ -276,6 +270,12 @@
     </ClCompile>
     <ClCompile Include="SimulationLib\Mujocolib\MujocoBHR_api.cpp">
       <Filter>源文件\SimulationLib\Mujocolib</Filter>
+    </ClCompile>
+    <ClCompile Include="SimulationLib\CRemotelib\remote_api.cpp">
+      <Filter>源文件\SimulationLib\CRemotelib</Filter>
+    </ClCompile>
+    <ClCompile Include="BHR7P2RobSim.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -57,7 +57,6 @@
     <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\Resistant_Compliance.h" />
     <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\Tra_Generate.h" />
     <ClInclude Include="BHR7P1_Run_Team_V3.0\lib\Uneven_Trailblazer.h" />
-    <ClInclude Include="Crep_DataExchange.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\BHR7_diff_inv.c" />
@@ -90,7 +89,8 @@
     <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\Resistant_Compliance.c" />
     <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\Tra_Generate.c" />
     <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\Uneven_Trailblazer.c" />
-    <ClCompile Include="Crep_DataExchange.c" />
+    <ClCompile Include="BHR7P2RobSim.cpp" />
+    <ClCompile Include="SimulationLib\CRemotelib\remote_api.cpp" />
     <ClCompile Include="SimulationLib\Crep_DataExchange.c" />
     <ClCompile Include="SimulationLib\DataOnRobot.c" />
     <ClCompile Include="SimulationLib\Mj_DataExchange.c" />
@@ -100,7 +100,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{F249CC97-71DB-449B-AA35-74DE934A2536}</ProjectGuid>
     <RootNamespace>CrepforBHR6</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -119,7 +119,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -151,9 +151,9 @@
     <LibraryPath>C:\Program Files\V-REP3\V-REP_PRO_EDU\programming\remoteApiBindings\lib\x64\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LibraryPath>C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\remoteApiBindings\lib\x64\Release;D:\BIT_zyx_BYQ\program_important\Crep_BHR7_RunNew\RunTeamLib;$(LibraryPath)</LibraryPath>
-    <IncludePath>D:\BIT_zyx_BYQ\program_important\Crep_BHR7_RunNew\RunTeamLib;C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\remoteApi;C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\include;$(IncludePath)</IncludePath>
-    <ReferencePath>D:\BIT_zyx_BYQ\program_important\Crep_BHR7_RunNew\RunTeamLib;$(ReferencePath)</ReferencePath>
+    <LibraryPath>C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\remoteApiBindings\lib\x64\Release;D:\BIT_zyx_BYQ\program_important\Crep_BHR7_RunNew\RunTeamLib;D:\L.B\GitHUB\ZyX_DDPG_based_on_DCC_BHR6sim\SimulationLib\Mujocolib\bin;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\BIT_zyx_BYQ\program_important\Crep_BHR7_RunNew\RunTeamLib;C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\remoteApi;C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\include;D:\L.B\GitHUB\ZyX_DDPG_based_on_DCC_BHR6sim\SimulationLib\Mujocolib;$(IncludePath)</IncludePath>
+    <ReferencePath>D:\BIT_zyx_BYQ\program_important\Crep_BHR7_RunNew\RunTeamLib;D:\L.B\GitHUB\ZyX_DDPG_based_on_DCC_BHR6sim\SimulationLib\Mujocolib;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -179,7 +179,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>remoteApiSharedLib-64.lib;ChzControlLib\ChzControl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>remoteApiSharedLib-64.lib;ChzControlLib\ChzControl.lib;glfw3.lib;mujoco200.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
