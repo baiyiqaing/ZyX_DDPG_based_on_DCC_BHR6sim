@@ -1,0 +1,4 @@
+﻿  DCC_PGFrame.c
+D:\BIT_zyx_BYQ\program_important\Crep_BHR7_RunNew\BHR7P1_Run_Team_V3.0\lib\Dcc_lib\PG\DCC_PGFrame.c(424,21): warning C4553: “==”: 未使用表达式结果；是否打算使用“=”?
+D:\BIT_zyx_BYQ\program_important\Crep_BHR7_RunNew\BHR7P1_Run_Team_V3.0\lib\Dcc_lib\PG\DCC_PGFrame.c(237): warning C4715: “fndGetAnkLateral”: 不是所有的控件路径都返回值
+  Crep_forBHR6.vcxproj -> D:\BIT_zyx_BYQ\program_important\Crep_BHR7_RunNew\x64\Debug\Crep_forBHR6.exe
