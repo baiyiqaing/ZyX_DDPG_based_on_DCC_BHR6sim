@@ -1,7 +1,7 @@
 // DCC_RUN_ReadConfig.h, Lee <hexb66@bit.edu.cn>
 #pragma once
 #ifdef __cplusplus
-#include <BhrRtxClass\RtxCConfigJson.hpp>
+//#include <BhrRtxClass\RtxCConfigJson.hpp>
 #include <BhrRtxClass\RtxCEvent.hpp>
 extern "C" {
 #endif

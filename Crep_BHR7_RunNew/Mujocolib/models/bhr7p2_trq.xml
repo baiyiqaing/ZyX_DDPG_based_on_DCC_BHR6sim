@@ -1,0 +1,176 @@
+<mujoco model="Humanoid">
+
+	<compiler inertiafromgeom = "false" angle = "radian" />
+
+	<default>
+		<joint limited = "true" damping = "1" armature = "0"/>
+		<geom condim = "4" material = "matgeom"/>
+		<motor ctrlrange = "-314.0 314.0" ctrllimited = "true"/>
+	</default>
+
+	<option timestep = "0.004" iterations = "50" tolerance = "1e-10" solver = "Newton" jacobian = "dense" cone = "pyramidal" gravity = "0.0 0.0 -9.8"/>
+
+	<size nconmax = "50" njmax = "200" nstack = "10000"/>
+
+	<visual>
+		<map force = "0.1" zfar = "30"/>
+		<rgba haze = "0.15 0.25 0.35 1"/>
+		<quality shadowsize = "2048"/>
+		<global offwidth = "800" offheight = "800"/>
+	</visual>
+
+	<asset>
+		<texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="512"/>
+		<texture name="texplane" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2" width="512" height="512" mark="cross" markrgb=".8 .8 .8"/>
+		<texture name="texgeom" type="cube" builtin="flat" mark="cross" width="127" height="1278"
+			rgb1="0.8 0.6 0.4" rgb2="0.8 0.6 0.4" markrgb="1 1 1" random="0.01"/>
+		<material name="matplane" reflectance="0.3" texture="texplane" texrepeat="1 1" texuniform="true"/>
+		<material name="matgeom" texture="texgeom" texuniform="true" rgba="0.8 0.6 .4 1"/>
+	</asset>
+
+	<worldbody>
+		<geom name = "floor" pos = "0 0 0" size = "0 0 .25" type = "plane" material = "matplane" condim = "3"/>
+
+		<light directional = "false" diffuse = ".2 .2 .2" specular = "0 0 0" pos = "0 0 5" dir = "0 0 -1" castshadow = "false"/>
+		<light mode = "targetbodycom" target = "midbody" directional = "false" diffuse = ".8 .8 .8" specular = "0.3 0.3 0.3" pos = "0 0 4.0" dir = "0 0 -1"/>
+
+		<body name = "midbody" pos = "0 0 0.84000000">
+			<inertial pos = "0 0 0" mass = "0.00000010" diaginertia = "0.00000010 0.00000010 0.00000010"/>
+			<freejoint name = "root" />
+			<geom name = "midbody1" type = "capsule" fromto = "0 -0.08000000 0 0 0.08000000 0"  size = "0.04"/>
+			<body name = "uppbody" pos = "-0.04200000 0.00000000 0.29600000">
+				<joint name = "waist_yaw" type="hinge" pos = "0.04200000 0.00000000 -0.29600000" axis = "0 0 1" range = "-90 90"/>
+				<inertial pos = "0 0 0" mass = "19.50000000" diaginertia = "0.61000000 0.38000000 0.30000000"/>
+				<geom name = "uppbody1" type = "ellipsoid" size = "0.06 0.08000000 0.24600000" />
+				<body name = "larm" pos = "0.01900000 0.27200000 -0.11400000">
+					<joint name = "left_arm" type="hinge" pos = "-0.01900000 0.00000000 0.22900000" axis = "0 1 0" range = "-90 90"/>
+					<inertial pos = "0 0 0" mass = "1.50000000" diaginertia = "0.04300000 0.04400000 0.00230000"/>
+					<geom name = "larm1" type = "capsule" fromto = "0 0 0.22900000 0 0 0"  size = "0.04"/>
+				</body>
+				<body name = "rarm" pos = "0.01900000 -0.27200000 -0.11400000">
+					<joint name = "right_arm" type="hinge" pos = "-0.01900000 0.00000000 0.22900000" axis = "0 1 0" range = "-90 90"/>
+					<inertial pos = "0 0 0" mass = "1.50000000" diaginertia = "0.04300000 0.04400000 0.00230000"/>
+					<geom name = "rarm1" type = "capsule" fromto = "0 0 0.22900000 0 0 0"  size = "0.04"/>
+				</body>
+				<site name = "site_imu" pos = "0.04200000 0.00000000 -0.29600000"/>
+			</body>
+			<body name = "lthigh" pos = "0.01400000 0.09500000 -0.10100000">
+				<joint name = "left_leg_1" type="hinge" pos = "-0.01400000 -0.01500000 0.10100000" axis = "0 0 1" range = "-90 90"/>
+				<joint name = "left_leg_2" type="hinge" pos = "-0.01400000 -0.01500000 0.10100000" axis = "1 0 0" range = "-90 90"/>
+				<joint name = "left_leg_3" type="hinge" pos = "-0.01400000 -0.01500000 0.10100000" axis = "0 1 0" range = "-90 90"/>
+				<inertial pos = "0 0 0" mass = "5.80000000" diaginertia = "0.06700000 0.06300000 0.01400000"/>
+				<geom name = "lthigh1" type = "capsule" fromto = "0 0 0.10100000 0 0 -0.21900000"  size = "0.04"/>
+				<body name = "lshank" pos = "-0.01400000 -0.01500000 -0.31000000">
+					<joint name = "left_leg_4" type="hinge" pos = "0.00000000 0.00000000 0.09100000" axis = "0 1 0" range = "-180 180"/>
+					<inertial pos = "0 0 0" mass = "1.80000000" diaginertia = "0.03000000 0.03000000 0.00020000"/>
+					<geom name = "lshank1" type = "capsule" fromto = "0 0 0.09100000 0 0 -0.22900000"  size = "0.04"/>
+					<body name = "lfoot" pos = "0.00000000 0.00000000 -0.30400000">
+						<joint name = "left_leg_5" type="hinge" pos = "0.00000000 0.00000000 0.07500000" axis = "0 1 0" range = "-90 90"/>
+						<joint name = "left_leg_6" type="hinge" pos = "0.00000000 0.00000000 0.07500000" axis = "1 0 0" range = "-90 90"/>
+						<inertial pos = "0 0 0" mass = "1.15000000" diaginertia = "0.00170000 0.00470000 0.00520000"/>
+						<body name = "lfoot_bottom" pos = "0.03500000 0.02000000 -0.01500000">
+							<inertial pos = "0 0 0" mass = "0.00000010" diaginertia = "0.00000010 0.00000010 0.00000010"/>
+							<geom name = "lfoot_bottom1" type = "box" size = "0.13500000 0.07500000 0.01000000"/>
+							<site name = "site_lforcesensor" pos = "-0.03500000 -0.02000000 0.08000000"/>
+						</body>
+					</body>
+				</body>
+			</body>
+			<body name = "rthigh" pos = "0.01400000 -0.09500000 -0.10100000">
+				<joint name = "right_leg_1" type="hinge" pos = "-0.01400000 0.01500000 0.10100000" axis = "0 0 1" range = "-90 90"/>
+				<joint name = "right_leg_2" type="hinge" pos = "-0.01400000 0.01500000 0.10100000" axis = "1 0 0" range = "-90 90"/>
+				<joint name = "right_leg_3" type="hinge" pos = "-0.01400000 0.01500000 0.10100000" axis = "0 1 0" range = "-90 90"/>
+				<inertial pos = "0 0 0" mass = "5.80000000" diaginertia = "0.06700000 0.06300000 0.01400000"/>
+				<geom name = "rthigh1" type = "capsule" fromto = "0 0 0.10100000 0 0 -0.21900000"  size = "0.04"/>
+				<body name = "rshank" pos = "-0.01400000 0.01500000 -0.31000000">
+					<joint name = "right_leg_4" type="hinge" pos = "0.00000000 0.00000000 0.09100000" axis = "0 1 0" range = "-180 180"/>
+					<inertial pos = "0 0 0" mass = "1.80000000" diaginertia = "0.03000000 0.03000000 0.00020000"/>
+					<geom name = "rshank1" type = "capsule" fromto = "0 0 0.09100000 0 0 -0.22900000"  size = "0.04"/>
+					<body name = "rfoot" pos = "0.00000000 0.00000000 -0.30400000">
+						<joint name = "right_leg_5" type="hinge" pos = "0.00000000 0.00000000 0.07500000" axis = "0 1 0" range = "-90 90"/>
+						<joint name = "right_leg_6" type="hinge" pos = "0.00000000 0.00000000 0.07500000" axis = "1 0 0" range = "-90 90"/>
+						<inertial pos = "0 0 0" mass = "1.15000000" diaginertia = "0.00170000 0.00470000 0.00520000"/>
+						<body name = "rfoot_bottom" pos = "0.03500000 -0.02000000 -0.01500000">
+							<inertial pos = "0 0 0" mass = "0.00000010" diaginertia = "0.00000010 0.00000010 0.00000010"/>
+							<geom name = "rfoot_bottom1" type = "box" size = "0.13500000 0.07500000 0.01000000"/>
+							<site name = "site_rforcesensor" pos = "-0.03500000 0.02000000 0.08000000"/>
+						</body>
+					</body>
+				</body>
+			</body>
+		</body>
+	</worldbody>
+
+	<sensor>
+		<force name = "lforcesonsor" site = "site_lforcesensor" cutoff = "2000.0"/>
+		<torque name = "ltorquesonsor" site = "site_lforcesensor" cutoff = "2000.0"/>
+		<force name = "rforcesonsor" site = "site_rforcesensor" cutoff = "2000.0"/>
+		<torque name = "rtorquesonsor" site = "site_rforcesensor" cutoff = "2000.0"/>
+	</sensor>
+	<actuator>
+		<position name="waist_yaw" gear="100.00000" joint="waist_yaw" kp = "0.11"/>
+		<position name="left_arm" gear="100.00000" joint="left_arm" kp = "0.11"/>
+		<position name="right_arm" gear="100.00000" joint="right_arm" kp = "0.11"/>
+		<position name="left_leg_1" gear="100.00000" joint="left_leg_1" kp = "0.21"/>
+		<position name="left_leg_2" gear="100.00000" joint="left_leg_2" kp = "0.28"/>
+		<position name="left_leg_3" gear="100.00000" joint="left_leg_3" kp = "0.12"/>
+		<position name="left_leg_4" gear="100.00000" joint="left_leg_4" kp = "0.12"/>
+		<position name="left_leg_5" gear="100.00000" joint="left_leg_5" kp = "0.12"/>
+		<position name="left_leg_6" gear="100.00000" joint="left_leg_6" kp = "0.15"/>
+		<position name="right_leg_1" gear="100.00000" joint="right_leg_1" kp = "0.21"/>
+		<position name="right_leg_2" gear="100.00000" joint="right_leg_2" kp = "0.28"/>
+		<position name="right_leg_3" gear="100.00000" joint="right_leg_3" kp = "0.12"/>
+		<position name="right_leg_4" gear="100.00000" joint="right_leg_4" kp = "0.12"/>
+		<position name="right_leg_5" gear="100.00000" joint="right_leg_5" kp = "0.12"/>
+		<position name="right_leg_6" gear="100.00000" joint="right_leg_6" kp = "0.15"/>
+	</actuator>
+
+	<contact>
+		<exclude body1 = "midbody" body2 = "uppbody"/>
+		<exclude body1 = "midbody" body2 = "larm"/>
+		<exclude body1 = "midbody" body2 = "rarm"/>
+		<exclude body1 = "midbody" body2 = "lthigh"/>
+		<exclude body1 = "midbody" body2 = "lshank"/>
+		<exclude body1 = "midbody" body2 = "lfoot"/>
+		<exclude body1 = "midbody" body2 = "rthigh"/>
+		<exclude body1 = "midbody" body2 = "rshank"/>
+		<exclude body1 = "midbody" body2 = "rfoot"/>
+		<exclude body1 = "uppbody" body2 = "larm"/>
+		<exclude body1 = "uppbody" body2 = "rarm"/>
+		<exclude body1 = "uppbody" body2 = "lthigh"/>
+		<exclude body1 = "uppbody" body2 = "lshank"/>
+		<exclude body1 = "uppbody" body2 = "lfoot"/>
+		<exclude body1 = "uppbody" body2 = "rthigh"/>
+		<exclude body1 = "uppbody" body2 = "rshank"/>
+		<exclude body1 = "uppbody" body2 = "rfoot"/>
+		<exclude body1 = "larm" body2 = "rarm"/>
+		<exclude body1 = "larm" body2 = "lthigh"/>
+		<exclude body1 = "larm" body2 = "lshank"/>
+		<exclude body1 = "larm" body2 = "lfoot"/>
+		<exclude body1 = "larm" body2 = "rthigh"/>
+		<exclude body1 = "larm" body2 = "rshank"/>
+		<exclude body1 = "larm" body2 = "rfoot"/>
+		<exclude body1 = "rarm" body2 = "lthigh"/>
+		<exclude body1 = "rarm" body2 = "lshank"/>
+		<exclude body1 = "rarm" body2 = "lfoot"/>
+		<exclude body1 = "rarm" body2 = "rthigh"/>
+		<exclude body1 = "rarm" body2 = "rshank"/>
+		<exclude body1 = "rarm" body2 = "rfoot"/>
+		<exclude body1 = "lthigh" body2 = "lshank"/>
+		<exclude body1 = "lthigh" body2 = "lfoot"/>
+		<exclude body1 = "lthigh" body2 = "rthigh"/>
+		<exclude body1 = "lthigh" body2 = "rshank"/>
+		<exclude body1 = "lthigh" body2 = "rfoot"/>
+		<exclude body1 = "lshank" body2 = "lfoot"/>
+		<exclude body1 = "lshank" body2 = "rthigh"/>
+		<exclude body1 = "lshank" body2 = "rshank"/>
+		<exclude body1 = "lshank" body2 = "rfoot"/>
+		<exclude body1 = "lfoot" body2 = "rthigh"/>
+		<exclude body1 = "lfoot" body2 = "rshank"/>
+		<exclude body1 = "lfoot" body2 = "rfoot"/>
+		<exclude body1 = "rthigh" body2 = "rshank"/>
+		<exclude body1 = "rthigh" body2 = "rfoot"/>
+		<exclude body1 = "rshank" body2 = "rfoot"/>
+	</contact>
+
+</mujoco>

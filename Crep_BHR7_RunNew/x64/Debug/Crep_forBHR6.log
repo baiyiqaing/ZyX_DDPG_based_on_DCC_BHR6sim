@@ -1,4 +1,16 @@
-﻿  DCC_PGFrame.c
-D:\BIT_zyx_BYQ\program_important\Crep_BHR7_RunNew\BHR7P1_Run_Team_V3.0\lib\Dcc_lib\PG\DCC_PGFrame.c(424,21): warning C4553: “==”: 未使用表达式结果；是否打算使用“=”?
-D:\BIT_zyx_BYQ\program_important\Crep_BHR7_RunNew\BHR7P1_Run_Team_V3.0\lib\Dcc_lib\PG\DCC_PGFrame.c(237): warning C4715: “fndGetAnkLateral”: 不是所有的控件路径都返回值
-  Crep_forBHR6.vcxproj -> D:\BIT_zyx_BYQ\program_important\Crep_BHR7_RunNew\x64\Debug\Crep_forBHR6.exe
+﻿  remote_api.cpp
+d:\l.b\github\zyx_ddpg_based_on_dcc_bhr6sim\crep_bhr7_runnew\mujocolib\include\mjmodel.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\program files (x86)\windows kits\10\include\10.0.16299.0\shared\minwindef.h(130): warning C4005: “APIENTRY”: 宏重定义
+  d:\l.b\github\zyx_ddpg_based_on_dcc_bhr6sim\crep_bhr7_runnew\mujocolib\include\glfw3.h(98): note: 参见“APIENTRY”的前一个定义
+d:\l.b\github\zyx_ddpg_based_on_dcc_bhr6sim\crep_bhr7_runnew\bhr7p1_run_team_v3.0\lib\dcc_lib\base\dcc_get_key.h(56): warning C4091: “extern ”: 没有声明变量时忽略“SustainInputKeyName”的左侧
+d:\l.b\github\zyx_ddpg_based_on_dcc_bhr6sim\crep_bhr7_runnew\bhr7p1_run_team_v3.0\lib\dcc_lib\base\dcc_get_key.h(59): warning C4091: “extern ”: 没有声明变量时忽略“DiceretInputKeyName”的左侧
+d:\l.b\github\zyx_ddpg_based_on_dcc_bhr6sim\crep_bhr7_runnew\cremotelib\remote_api.cpp(693): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 5 拥有了类型“double”
+d:\l.b\github\zyx_ddpg_based_on_dcc_bhr6sim\crep_bhr7_runnew\cremotelib\remote_api.cpp(740): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 10 拥有了类型“double”
+d:\l.b\github\zyx_ddpg_based_on_dcc_bhr6sim\crep_bhr7_runnew\cremotelib\remote_api.cpp(740): warning C4474: printf: 格式字符串中传递的参数太多
+  d:\l.b\github\zyx_ddpg_based_on_dcc_bhr6sim\crep_bhr7_runnew\cremotelib\remote_api.cpp(740): note: 占位符和其参数预计 10 可变参数，但提供的却是 11 参数
+  Mj_DataExchange.c
+  MujocoBHR_api.cpp
+d:\l.b\github\zyx_ddpg_based_on_dcc_bhr6sim\crep_bhr7_runnew\mujocolib\include\mjmodel.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+LINK : warning LNK4075: 忽略“/INCREMENTAL”(由于“/LTCG”规范)
+  LINK : 已指定 /LTCG，但不需要生成代码；从链接命令行中移除 /LTCG 以提高链接器性能
+  Crep_forBHR6.vcxproj -> D:\L.B\GitHUB\ZyX_DDPG_based_on_DCC_BHR6sim\Crep_BHR7_RunNew\x64\Debug\Crep_forBHR6.exe

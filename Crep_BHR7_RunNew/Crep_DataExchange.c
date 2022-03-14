@@ -11,7 +11,6 @@ double GQ_Roll, GQ_Pitch;
 extern JointsAngle PreCon_LegJoint, Real_LegJoint;
 extern double Ref_Arm_Joint[3][7]; 
 extern ForceSensor F_RFoot, F_LFoot;
-extern DCCRunParms dccRunParms;
 extern Position P_ZMPRef_W, P_COMRef_W, P_ZMPRef_B;
 double FootFT[5][6];
 extern int K_Preview_Con;
@@ -62,7 +61,6 @@ int fndDataExchange(double dptJointsPosition[50], double dptJointsVelocity[50], 
 	if (k_pre == 0) { // init
 		fnvDccGetPG();		// PlanPG
 		PreCon_Mode = PRECON_MOVE_FORWARD;
-		NRT_ReadDCCRunParms(&dccRunParms, L"DCCRunConConfig.json");
 		//printf("%f\n", dccRunParms.paras_Rot);
 		Init_Walk_Parameters();
 		Init_Walk_Tra();

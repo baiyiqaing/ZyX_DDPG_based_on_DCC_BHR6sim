@@ -45,6 +45,12 @@
     <Filter Include="源文件\RunTeamLib">
       <UniqueIdentifier>{573a4366-a47f-4b97-8ccc-b885374c8650}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\Mujocolib">
+      <UniqueIdentifier>{91fdaa1d-866a-4447-a802-244e80634958}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ChzLib">
+      <UniqueIdentifier>{bdfc7369-5d1f-4c91-a8c4-06b2281023d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CRemotelib\remote_api.h">
@@ -208,9 +214,6 @@
     <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\DCC_motion.c">
       <Filter>源文件\BHR7P1_Run_Team\lib</Filter>
     </ClCompile>
-    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\DCC_Run_ReadConfig.cpp">
-      <Filter>源文件\BHR7P1_Run_Team\lib</Filter>
-    </ClCompile>
     <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\DCC_RunCon.c">
       <Filter>源文件\BHR7P1_Run_Team\lib</Filter>
     </ClCompile>
@@ -264,6 +267,60 @@
     </ClCompile>
     <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\Dcc_lib\PG\DCC_FreeWalk.c">
       <Filter>源文件\BHR7P1_Run_Team\lib\Dcc_lib</Filter>
+    </ClCompile>
+    <ClCompile Include="Mujocolib\MujocoBHR_api.cpp">
+      <Filter>源文件\Mujocolib</Filter>
+    </ClCompile>
+    <ClCompile Include="Mj_DataExchange.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_Base.cpp">
+      <Filter>源文件\ChzLib</Filter>
+    </ClCompile>
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_Calculator.cpp">
+      <Filter>源文件\ChzLib</Filter>
+    </ClCompile>
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_Eigen.cpp">
+      <Filter>源文件\ChzLib</Filter>
+    </ClCompile>
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_Filter.cpp">
+      <Filter>源文件\ChzLib</Filter>
+    </ClCompile>
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_FootDown.cpp">
+      <Filter>源文件\ChzLib</Filter>
+    </ClCompile>
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_Footstep.cpp">
+      <Filter>源文件\ChzLib</Filter>
+    </ClCompile>
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_Include.cpp">
+      <Filter>源文件\ChzLib</Filter>
+    </ClCompile>
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_Kinematics.cpp">
+      <Filter>源文件\ChzLib</Filter>
+    </ClCompile>
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_LandingForce.cpp">
+      <Filter>源文件\ChzLib</Filter>
+    </ClCompile>
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_LowLevelFootStep.cpp">
+      <Filter>源文件\ChzLib</Filter>
+    </ClCompile>
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_PerspectiveMapping.cpp">
+      <Filter>源文件\ChzLib</Filter>
+    </ClCompile>
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_RobotParam.cpp">
+      <Filter>源文件\ChzLib</Filter>
+    </ClCompile>
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_Spline.cpp">
+      <Filter>源文件\ChzLib</Filter>
+    </ClCompile>
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_SwingFootControl.cpp">
+      <Filter>源文件\ChzLib</Filter>
+    </ClCompile>
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_WaistComp.cpp">
+      <Filter>源文件\ChzLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Mujocolib\include\uitools.c">
+      <Filter>源文件\Mujocolib</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

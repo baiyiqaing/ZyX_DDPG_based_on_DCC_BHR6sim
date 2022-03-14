@@ -77,7 +77,6 @@
     <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\Dcc_lib\PG\MPC_unconstrained_coder_forPG\PGMPC.c" />
     <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\DCC_motion.c" />
     <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\DCC_RunCon.c" />
-    <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\DCC_Run_ReadConfig.cpp" />
     <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\DemoControl.c" />
     <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\leeCpp2C.cpp" />
     <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\leeLegLengthControl.cpp" />
@@ -93,12 +92,30 @@
     <ClCompile Include="BHR7P1_Run_Team_V3.0\lib\Uneven_Trailblazer.c" />
     <ClCompile Include="CRemotelib\remote_api.cpp" />
     <ClCompile Include="Crep_DataExchange.c" />
+    <ClCompile Include="Mj_DataExchange.c" />
+    <ClCompile Include="Mujocolib\include\uitools.c" />
+    <ClCompile Include="Mujocolib\MujocoBHR_api.cpp" />
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_Base.cpp" />
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_Calculator.cpp" />
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_Eigen.cpp" />
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_Filter.cpp" />
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_FootDown.cpp" />
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_Footstep.cpp" />
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_Include.cpp" />
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_Kinematics.cpp" />
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_LandingForce.cpp" />
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_LowLevelFootStep.cpp" />
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_PerspectiveMapping.cpp" />
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_RobotParam.cpp" />
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_Spline.cpp" />
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_SwingFootControl.cpp" />
+    <ClCompile Include="RunTeamLib\ChzControlLib\Chz_WaistComp.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{F249CC97-71DB-449B-AA35-74DE934A2536}</ProjectGuid>
     <RootNamespace>CrepforBHR6</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -117,7 +134,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -149,9 +166,9 @@
     <LibraryPath>C:\Program Files\V-REP3\V-REP_PRO_EDU\programming\remoteApiBindings\lib\x64\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LibraryPath>C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\remoteApiBindings\lib\x64\Release;D:\BIT_zyx_BYQ\program_important\Crep_BHR7_RunNew\RunTeamLib;$(LibraryPath)</LibraryPath>
-    <IncludePath>D:\BIT_zyx_BYQ\program_important\Crep_BHR7_RunNew\RunTeamLib;C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\remoteApi;C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\include;$(IncludePath)</IncludePath>
-    <ReferencePath>D:\BIT_zyx_BYQ\program_important\Crep_BHR7_RunNew\RunTeamLib;$(ReferencePath)</ReferencePath>
+    <LibraryPath>D:\L.B\GitHUB\ZyX_DDPG_based_on_DCC_BHR6sim\Crep_BHR7_RunNew\Mujocolib\bin;C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\remoteApiBindings\lib\x64\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\BIT_zyx_BYQ\program_important\Crep_BHR7_RunNew\RunTeamLib;C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\remoteApi;C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\include;D:\L.B\GitHUB\ZyX_DDPG_based_on_DCC_BHR6sim\Crep_BHR7_RunNew\RunTeamLib;D:\L.B\GitHUB\ZyX_DDPG_based_on_DCC_BHR6sim\Crep_BHR7_RunNew\Mujocolib\bin;$(IncludePath)</IncludePath>
+    <ReferencePath>D:\BIT_zyx_BYQ\program_important\Crep_BHR7_RunNew\RunTeamLib;D:\L.B\GitHUB\ZyX_DDPG_based_on_DCC_BHR6sim\Crep_BHR7_RunNew\Mujocolib\bin;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -171,14 +188,16 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Program Files\V-REP3\V-REP_PRO_EDU\programming\common;C:\Program Files\V-REP3\V-REP_PRO_EDU\programming\include;C:\Program Files\V-REP3\V-REP_PRO_EDU\programming\remoteApi;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;NON_MATLAB_PARSING;MAX_EXT_API_CONNECTIONS=255;DO_NOT_USE_SHARED_MEMORY;_CRT_SECURE_NO_WARNINGS;RtSetEvent=SetEvent;RtReleaseMutex=ReleaseMutex;RtOpenMutex=OpenMutex;RtOpenSharedMemory=OpenSharedMemory;RtWaitForSingleObject=WaitForSingleObject;RtCloseHandle=CloseHandle;RtOpenEvent=OpenEvent;RtOpenSemaphore=OpenSemaphore;SIMULATION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\common;C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\include;C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\remoteApi;D:\L.B\GitHUB\ZyX_DDPG_based_on_DCC_BHR6sim\Crep_BHR7_RunNew\Mujocolib\bin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NON_MATLAB_PARSING;MAX_EXT_API_CONNECTIONS=255;DO_NOT_USE_SHARED_MEMORY;_CRT_SECURE_NO_WARNINGS;RtSetEvent=SetEvent;RtReleaseMutex=ReleaseMutex;RtOpenMutex=OpenMutex;RtOpenSharedMemory=OpenSharedMemory;RtWaitForSingleObject=WaitForSingleObject;RtCloseHandle=CloseHandle;RtOpenEvent=OpenEvent;RtOpenSemaphore=OpenSemaphore;SIMULATION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>remoteApiSharedLib-64.lib;ChzControlLib\ChzControl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>remoteApiSharedLib-64.lib;glfw3.lib;mujoco200.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
+      <AdditionalLibraryDirectories>D:\L.B\GitHUB\ZyX_DDPG_based_on_DCC_BHR6sim\Crep_BHR7_RunNew\Mujocolib\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <LinkStatus>true</LinkStatus>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

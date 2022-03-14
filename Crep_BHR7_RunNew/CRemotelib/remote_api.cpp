@@ -3,6 +3,7 @@ C-rep: V-rep remote api
 V-rep server port: 19997
 bit 20201028 Made by DCC,
 bit 20201226 for runteam
+bit 20220310
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,7 +17,13 @@ bit 20201226 for runteam
 //#include <extApiPlatform.c>
 
 #include "remote_api.h"
+#include "..\Mujocolib\MujocoBHR_api.h"
 #include "..\Crep_DataExchange.h"
+#include "..\PlatformSelect.h"
+
+// add MJ
+#include "..\Mj_DataExchange.h"
+
 extern "C" {
 	#include "..\BHR7P1_Run_Team_V3.0\lib\Dcc_lib\Base\dcc_get_key.h"
 }
@@ -595,6 +602,24 @@ int main() {
 		memset((void*)&stStateSens, 0, sizeof(dccRobotState));
 		CRobotConfig* CptRobotBHR6 = new CRobotConfig(JointsNumberInTotal, BodyCaredInTotal, ForceSersorsIntotal, MaxColumnForDataRecord, CONTROL_T, dPROGRAM_T); // Create the robot configuration class, control period and simulation duration are required.
 
+#ifdef USE_MUJOCO
+		// choose your model
+		fnvMujocoSimuInit(1, "D:\\L.B\\GitHUB\\ZyX_DDPG_based_on_DCC_BHR6sim\\Crep_BHR7_RunNew\\Mujocolib\\models\\bhr7p2.xml");
+
+		// start simulation in a background thread
+		std::thread MujocoSimThread(fnvMujocoSimuLoop);
+
+		// render loop in the current thread
+		while (!glfwWindowShouldClose(MJwindow) && !settings.exitrequest) fnvMujocoRenderLoop();
+
+		// end simulation
+		fnvMujocoSimuEnd();
+		MujocoSimThread.join();
+#endif
+
+
+#ifdef USE_VREP // vrep start
+		// vrep init start ============================================================================
 		if (CptRobotBHR6->nConnectedOk_flag == 1) { // Connection check.
 			CptRobotBHR6->fnvStartSimulation(); // Start simulation if VS is connected with V-rep, objects name in V-rep and joints configuration are required as concluded in ** Basic Config **.
 		}
@@ -602,14 +627,18 @@ int main() {
 		simxSynchronousTrigger(0);
 		simxSynchronousTrigger(0);
 		simxSynchronousTrigger(0);
+		// vrep init end ============================================================================
 
 		// Zyx sets Extremely important starting line !!~~!!~~
 		
 		// 20210821 1:11  步进调试验证了上面这段没问题，问题出在下面，给覆盖了
 		// 20210820 23:50 现在理了一下，C端这里，是-2没什么问题
+
 		nZyxCount = -2;
 
- 		while (!CptRobotBHR6->nEndSimulation_flag) { // Simulation duration check.
+		// vrep loop start ============================================================================
+		while (!CptRobotBHR6->nEndSimulation_flag) { // Simulation duration check.
+		// vrep read sersors start ============================================================================
 			CptRobotBHR6->fnvPushForce(dPushTime_1, dPushForce_1); // Push
 			CptRobotBHR6->fnvReadJoints(); // Read real joints angle and speed.
 			CptRobotBHR6->fnvReadIMU(); // Read body informations and IMU data.
@@ -631,8 +660,10 @@ int main() {
 				fndDataExchange()
 			do.
 		*/
+		// vrep read sersors end ============================================================================
 
-		// DCC
+		// zyx process 1 start ============================================================================
+		// DCC 
 		// DCC-Zyx 
 		// DCC-Zyx deng dai 
 		// DCC-Zyx deng dai 读控制器
@@ -717,10 +748,14 @@ int main() {
 			}
 			nZXINTROFlag = 1;
 		//********************ZMtraj_Introduce********************//
+		// zyx process 1 end ============================================================================
 
-
+		// vrep update start ============================================================================
 			//执行
 			fndDataExchange(CptRobotBHR6->dJointsPosition, CptRobotBHR6->dJointsVelocity, CptRobotBHR6->dBodyCaredPosition, CptRobotBHR6->dBodyCaredOrientation, CptRobotBHR6->dBodyCaredVelocoty, CptRobotBHR6->dBodyCaredAngularSpeed, CptRobotBHR6->dGyroSensor, CptRobotBHR6->dAccSensor, CptRobotBHR6->dFootFT, CptRobotBHR6->k_pre, CptRobotBHR6->dCmdJointsPosition, CptRobotBHR6->dCmdJointsTorque, CptRobotBHR6->cMode_flag);
+		// vrep update end ============================================================================
+
+		// zyx process 2 start ============================================================================
 			// Zyx
 			// Zyx - Three Judgements - Put another two toghter 
 			if (fabs(fPstState[1][0]) > dOriTest / 57.3 || fabs(fPstState[1][1]) > dOriTest / 57.3) {   // 注意阈值的单位
@@ -731,7 +766,9 @@ int main() {
 				//CptRobotBHR6->nEndSimulation_flag = 0;
 				nFallFlag = 0;
 			}
-
+		// zyx process 2 end ============================================================================
+		
+		// vrep send joint start ============================================================================
 			CptRobotBHR6->fnvSendJoints(); // Send joints commands.
 			CptRobotBHR6->fnvDataRecording(); // Record data.
 			//CptRobotBHR6->fnvDataWriteFile(cptFileName);
@@ -742,7 +779,9 @@ int main() {
 			if (_kbhit()) { // Space end.
 				if (_getch() == ' ') CptRobotBHR6->nEndSimulation_flag = 1;
 			}
+		// vrep send joint start ============================================================================
 
+		// zyx process 3 start ============================================================================
 			// Zyx - 所有的判断都应在“发数”之前，不管是角度、时间、空格，谁决定了end不重要，但一同要告诉p端。故最后发数
 			// FptZyxOut = fopen("DCC.dat", "w");
 			//fgetpos(FptZyxOut, &pos);
@@ -794,6 +833,7 @@ int main() {
 			}
 			fprintf(FptZyxOut2, "%f\n", fZyxDataOut[60]);
 			fclose(FptZyxOut2);
+		// zyx process 3 end ============================================================================
 
 		// ******************************************************** Control ended *****************************************************************
 		/** This value are required before this :
@@ -813,14 +853,17 @@ int main() {
 				if (_getch() == ' ') CptRobotBHR6->nEndSimulation_flag = 1;
 			}*/
 		}
+		// vrep loop end ============================================================================
 
+		// vrep end start ============================================================================
 		CptRobotBHR6->fnvEndSimulation();
+		// vrep end end ============================================================================
 
 		// 至此位置，没有键盘和其他的触发，是不会跳出循环到nTrigerJudge进行判断的~
 		// 标帜数 nZyxJudge = -9999
 		// 一旦出发End-Reset，则由 nTrigerJudge 来接管并判断:P端与C端的协同条件
 
-
+		// zyx process 4 start ============================================================================
 		while (nTrigerJudge) {
 			FptZyxJudge = fopen("DCC1.dat", "r");
 			fpos_t pos;
@@ -864,6 +907,10 @@ int main() {
 
 		// CptRobotBHR6->fnvEndSimulation();
 		delete CptRobotBHR6;
+		// zyx process 4 start ============================================================================
+#endif
+// vrep end
+
 	}
 	
 	//CptRobotBHR6->fnvDataWriteFile(cptFileName);

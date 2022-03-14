@@ -1244,130 +1244,130 @@ void DCC_RunningControl(double pitch_ref, double roll_ref, double  pitch_sen, do
 	Run_Rotational body_rot_rel;
 	Run_Rotational Rdel_the_temp, Ldel_the_temp, Rdel_dtheta_rel, Ldel_dtheta_rel; // LandRot
 	Run_FS Rfoot_ref, Lfoot_ref, Rfoot_rel, Lfoot_rel;
-	DCCRunParms *p = &dccRunParms;
+	//DCCRunParms *p = &dccRunParms;
 	// contact
 	Run_ConVal Vd_ankle = { 0.0 }; // Bug?
 	double F_sum;
 	double paras_GRFC_old_temp[6] = { 0.0 };
-	for(int i = 0;i<6;i++) {paras_GRFC_old_temp[i] = p->paras_GRFC_old[i];}
-	//double ZMP_Lag_T = 0.005;
-	//double IMU_Lag_T = 0.04;
-	//double Fz_Lag_T = 0.00;
-	//
-	//double pitch_bias = + 0.65 / 57.3;
-	//double zmpbias_micro = 0.85;
-	//double zmpx_bias = -0.0 * 0.02;  // for walk // -0.015; // for run
-	//double zmpy_bias = -0.025; // * (k_pre < 3500? 1.0: (exp((-1.0 * k_pre + 3500.0) / 1000.0))); // for walk // -0.02;  // for run -0.02
-	//// double zmpy_bias = -0.01;
-	//double m_robot_bias = 4.5;
-	//double roll_ampli = 2.5;
-	//double tau_pitch_bias = -0.0 * 2.8;
-	//double tau_roll_bias = 0.0;
-	//
-	//double Zc = 0.7;
-	//double paras_LIPM[6] = {
-	//	0.6 * 20.0, 10.4, 15.5,		// x -> kp, kv, kz
-	//	1.5 * 12.0, 10.4, 22.5		// y -> kp, kv, kz
-	//};
-
-	//double paras_TPC[6] = {
-	//	22.0, 85.4, 20.0,		// x -> kzmp, kp, kd 
-	//	18.0, 72.4, 28.0		// y -> kzmp, kp, kd 
-	//};
-	//double limit_TPC[2] = { 0.04, 0.03 }; // x, y
-
-	//double paras_GRFC_old[6] = {
-	//	0.75 * 250.0, 0.85 * 70.0,			// pitch -> kp, kd 
-	//	0.75 * 350.0, 0.85 * 75.0,			// roll  -> kp, kd 
-	//	1e4, 8e3 //1e4,   1e4 	//5e4,   8e3				// zctrl -> kp, kd 
-	//};
-	//double limit_GRFC_old[3] = { 6.0 / 57.3, 5.0 / 57.3, 0.015 }; // pitch, roll, zctrl
-
-	//double paras_GRFC[6] = {
-	//	0.1, 10.0, 8.0,			// pitch -> kf, kp, kd 
-	//	0.1, 10.0, 8.0			// roll  -> kf, kp, kd 
-	//};
-	//double limit_GRFC[3] = { 30.0 / 57.3, 20.0 / 57.3 }; // pitch, roll
-
-	//double paras_Rot[6] = {
-	//	 1.2 * 100.0, 50.0, 15.0,		// pitch -> kzmp, kp, kd 
-	//	 1.2 * 100.0, 50.0, 15.0		// roll  -> kzmp, kp, kd 
-	//};
-	//double limit_Rot[2] = { 20.0 / 57.3, 15.0 / 57.3 };// pitch, roll
-
-	//double Balance_Pro[2] = { 10.0, 10.0 }; // pitch, roll
-	//double Micro_Pro[2] = {0.2,0.2};
-	//double limit_Pro[2]   = { 50.0, 50.0 }; // pitch, roll
-
-	//double paras_FlyBody[6] = { 
-	//	145.9, 58.3, 16.7,		// pitch -> km, kp, kd
-	//	// 120.9, 58.3, 16.7,		// pitch -> km, kp, kd
-	//	145.9, 58.3, 16.7		// roll  -> km, kp, kd
-	//	// 120.9, 58.3, 16.7		// roll  -> km, kp, kd
-	//};
-	//double limit_FlyBody[2] = { 10.0 / 57.3, 10.0 / 57.3 }; // pitch, roll
-	//double wake_FlyBody[2]  = { 0.0 / 57.3,   0.0 / 57.3 }; // pitch, roll
-	//
-	//double paras_FlyFoot[4] = { 
-	//	0.1 * 48.3, 3.0 * 19.7,		// pitch -> kp, kd
-	//	0.1 * 48.3, 3.0 * 19.7		// roll  -> kp, kd
-	//};
-	//double limit_FlyFoot[2] = { 5.0 / 57.3, 5.0 / 57.3 }; // pitch, roll
-	//double wake_FlyFoot[2]  = { 0.0 / 57.3, 0.0 / 57.3 }; // pitch, roll
-	//// stepz
-	//double paras_Step[12] = {
-	//	60.0, 2.5 * 25.0, 1.25 * 9.0,		// z pitch -> kth, kp, kd
-	//	60.0, 2.5 * 25.0, 1.25 * 9.0,		// z roll  -> kth, kp, kd
-	//	20.0, 25.0, 9.0,					// r pitch -> rth, kp, kd
-	//	20.0, 25.0, 9.0						// r roll  -> rth, kp, kd
-	//};
-	//double limit_Step[3] = { 0.06, 10.0 * 57.3, 10 * 57.3 }; // z, pitch, roll
-	//// LandRot
-	//double paras_Land[11] = {
-	//	1.2, 180.0, 275.0,		// pitch -> Kzmp, Kth, kom
-	//	1.0, 150.0, 275.0,		// roll  -> Kzmp, Kth, kom
-	//	0.3, 175.0, 28.0,		// I_robot, kp, kd
-	//	0.04, 0.08				// kP2TY, kR2X 
-	//};
-	//double limit_Land[2] = { 15.0 / 57.3, 10.0 / 57.3 }; // pitch, roll
-	//double wake_Land[3] = { (1.0 + 5.3) / 57.3, -(1.0 + 7.0) / 57.3, (1.0 + 3.5) / 57.3}; // pitch+ pitch-, roll
-
-	//// contact
-	//double paras_Cont[5] = {
-	//	100.0, 18000.0, 260, 0.00004, 0.36 // Kp, Kd, Km, Ki, Ke
-	//};
-	//double limit_Cont[1] = { 0.1 };
-	//double paras_Stepdown[4] = {
-	//	0.112, 0.004, 250.0, 50     // H_ankle, StepDown, KeStepDown, k_down
-	//};
-	//int k_down = (int)paras_Stepdown[3];
-	//int k_down_fore = 55; // no bigger than k_down
-	//double H_ankle = paras_Stepdown[0];
-
-	//double addi_pitch = 0.0 * 5.0 * 57.3;
-	//double addi_Rfoot_pitch;
-	//double addi_Lfoot_pitch;
-	//double roll_bias_foot = 0.0;
-	//double pitch_bias_foot = 28.0;
+	//for(int i = 0;i<6;i++) {paras_GRFC_old_temp[i] = p->paras_GRFC_old[i];}
+	double ZMP_Lag_T = 0.005;
+	double IMU_Lag_T = 0.04;
+	double Fz_Lag_T = 0.00;
 	
-	// zmp bias
-	// zmpx_bias = -1.0 * chz_XZMP_filted;
+	double pitch_bias = + 0.65 / 57.3;
+	double zmpbias_micro = 0.85;
+	double zmpx_bias = -0.0 * 0.02;  // for walk // -0.015; // for run
+	double zmpy_bias = -0.025; // * (k_pre < 3500? 1.0: (exp((-1.0 * k_pre + 3500.0) / 1000.0))); // for walk // -0.02;  // for run -0.02
+	// double zmpy_bias = -0.01;
+	double m_robot_bias = 4.5;
+	double roll_ampli = 2.5;
+	double tau_pitch_bias = -0.0 * 2.8;
+	double tau_roll_bias = 0.0;
+	
+	double Zc = 0.7;
+	double paras_LIPM[6] = {
+		0.6 * 20.0, 10.4, 15.5,		// x -> kp, kv, kz
+		1.5 * 12.0, 10.4, 22.5		// y -> kp, kv, kz
+	};
+
+	double paras_TPC[6] = {
+		22.0, 85.4, 20.0,		// x -> kzmp, kp, kd 
+		18.0, 72.4, 28.0		// y -> kzmp, kp, kd 
+	};
+	double limit_TPC[2] = { 0.04, 0.03 }; // x, y
+
+	double paras_GRFC_old[6] = {
+		0.75 * 250.0, 0.85 * 70.0,			// pitch -> kp, kd 
+		0.75 * 350.0, 0.85 * 75.0,			// roll  -> kp, kd 
+		1e4, 8e3 //1e4,   1e4 	//5e4,   8e3				// zctrl -> kp, kd 
+	};
+	double limit_GRFC_old[3] = { 6.0 / 57.3, 5.0 / 57.3, 0.015 }; // pitch, roll, zctrl
+
+	double paras_GRFC[6] = {
+		0.1, 10.0, 8.0,			// pitch -> kf, kp, kd 
+		0.1, 10.0, 8.0			// roll  -> kf, kp, kd 
+	};
+	double limit_GRFC[3] = { 30.0 / 57.3, 20.0 / 57.3 }; // pitch, roll
+
+	double paras_Rot[6] = {
+		 1.2 * 100.0, 50.0, 15.0,		// pitch -> kzmp, kp, kd 
+		 1.2 * 100.0, 50.0, 15.0		// roll  -> kzmp, kp, kd 
+	};
+	double limit_Rot[2] = { 20.0 / 57.3, 15.0 / 57.3 };// pitch, roll
+
+	double Balance_Pro[2] = { 10.0, 10.0 }; // pitch, roll
+	double Micro_Pro[2] = {0.2,0.2};
+	double limit_Pro[2]   = { 50.0, 50.0 }; // pitch, roll
+
+	double paras_FlyBody[6] = { 
+		145.9, 58.3, 16.7,		// pitch -> km, kp, kd
+		// 120.9, 58.3, 16.7,		// pitch -> km, kp, kd
+		145.9, 58.3, 16.7		// roll  -> km, kp, kd
+		// 120.9, 58.3, 16.7		// roll  -> km, kp, kd
+	};
+	double limit_FlyBody[2] = { 10.0 / 57.3, 10.0 / 57.3 }; // pitch, roll
+	double wake_FlyBody[2]  = { 0.0 / 57.3,   0.0 / 57.3 }; // pitch, roll
+	
+	double paras_FlyFoot[4] = { 
+		0.1 * 48.3, 3.0 * 19.7,		// pitch -> kp, kd
+		0.1 * 48.3, 3.0 * 19.7		// roll  -> kp, kd
+	};
+	double limit_FlyFoot[2] = { 5.0 / 57.3, 5.0 / 57.3 }; // pitch, roll
+	double wake_FlyFoot[2]  = { 0.0 / 57.3, 0.0 / 57.3 }; // pitch, roll
+	// stepz
+	double paras_Step[12] = {
+		60.0, 2.5 * 25.0, 1.25 * 9.0,		// z pitch -> kth, kp, kd
+		60.0, 2.5 * 25.0, 1.25 * 9.0,		// z roll  -> kth, kp, kd
+		20.0, 25.0, 9.0,					// r pitch -> rth, kp, kd
+		20.0, 25.0, 9.0						// r roll  -> rth, kp, kd
+	};
+	double limit_Step[3] = { 0.06, 10.0 * 57.3, 10 * 57.3 }; // z, pitch, roll
+	// LandRot
+	double paras_Land[11] = {
+		1.2, 180.0, 275.0,		// pitch -> Kzmp, Kth, kom
+		1.0, 150.0, 275.0,		// roll  -> Kzmp, Kth, kom
+		0.3, 175.0, 28.0,		// I_robot, kp, kd
+		0.04, 0.08				// kP2TY, kR2X 
+	};
+	double limit_Land[2] = { 15.0 / 57.3, 10.0 / 57.3 }; // pitch, roll
+	double wake_Land[3] = { (1.0 + 5.3) / 57.3, -(1.0 + 7.0) / 57.3, (1.0 + 3.5) / 57.3}; // pitch+ pitch-, roll
+
+	// contact
+	double paras_Cont[5] = {
+		100.0, 18000.0, 260, 0.00004, 0.36 // Kp, Kd, Km, Ki, Ke
+	};
+	double limit_Cont[1] = { 0.1 };
+	double paras_Stepdown[4] = {
+		0.112, 0.004, 250.0, 50     // H_ankle, StepDown, KeStepDown, k_down
+	};
+	int k_down = (int)paras_Stepdown[3];
+	int k_down_fore = 55; // no bigger than k_down
+	double H_ankle = paras_Stepdown[0];
+
+	double addi_pitch = 0.0 * 5.0 * 57.3;
+	double addi_Rfoot_pitch;
+	double addi_Lfoot_pitch;
+	double roll_bias_foot = 0.0;
+	double pitch_bias_foot = 28.0;
+	
+	 //zmp bias
+	 //zmpx_bias = -1.0 * chz_XZMP_filted;
 	
 	// zmp
 	zmp_ref.x = P_ZMPRef_B.px;
 	zmp_ref.y = P_ZMPRef_B.py;
-	ZMP_filtered.x = Filter_TimeLag(ZMP_filtered.x, P_ZMPRel_B.px + p->zmpbias_micro * p->zmpx_bias, CONTROL_T, p->ZMP_Lag_T); // 0807
-	ZMP_filtered.y = Filter_TimeLag(ZMP_filtered.y, P_ZMPRel_B.py + p->zmpbias_micro * p->zmpy_bias, CONTROL_T, p->ZMP_Lag_T);
-	IMU_filtered.pitch = Filter_TimeLag(IMU_filtered.pitch, pitch_sen, CONTROL_T, p->IMU_Lag_T);
-	IMU_filtered.roll  = Filter_TimeLag(IMU_filtered.roll , roll_sen , CONTROL_T, p->IMU_Lag_T);
+	ZMP_filtered.x = Filter_TimeLag(ZMP_filtered.x, P_ZMPRel_B.px + zmpbias_micro * zmpx_bias, CONTROL_T, ZMP_Lag_T); // 0807
+	ZMP_filtered.y = Filter_TimeLag(ZMP_filtered.y, P_ZMPRel_B.py + zmpbias_micro * zmpy_bias, CONTROL_T, ZMP_Lag_T);
+	IMU_filtered.pitch = Filter_TimeLag(IMU_filtered.pitch, pitch_sen, CONTROL_T, IMU_Lag_T);
+	IMU_filtered.roll  = Filter_TimeLag(IMU_filtered.roll , roll_sen , CONTROL_T, IMU_Lag_T);
 	// FzR_filtered = Filter_TimeLag(FzR_filtered, FootFT[1][2], CONTROL_T, Fz_Lag_T);
 	// FzL_filtered = Filter_TimeLag(FzL_filtered, FootFT[2][2], CONTROL_T, Fz_Lag_T);
-	FzR_filtered = Filter_TimeLag(FzR_filtered, F_RFoot.fz, CONTROL_T, p->Fz_Lag_T);
-	FzL_filtered = Filter_TimeLag(FzL_filtered, F_LFoot.fz, CONTROL_T, p->Fz_Lag_T);
-	TxR_filtered = Filter_TimeLag(TxR_filtered, F_RFoot.tx, CONTROL_T, p->Fz_Lag_T);
-	TxL_filtered = Filter_TimeLag(TxL_filtered, F_LFoot.tx, CONTROL_T, p->Fz_Lag_T);
-	TyR_filtered = Filter_TimeLag(TyR_filtered, F_RFoot.ty, CONTROL_T, p->Fz_Lag_T);
-	TyL_filtered = Filter_TimeLag(TyL_filtered, F_LFoot.ty, CONTROL_T, p->Fz_Lag_T);
+	FzR_filtered = Filter_TimeLag(FzR_filtered, F_RFoot.fz, CONTROL_T, Fz_Lag_T);
+	FzL_filtered = Filter_TimeLag(FzL_filtered, F_LFoot.fz, CONTROL_T, Fz_Lag_T);
+	TxR_filtered = Filter_TimeLag(TxR_filtered, F_RFoot.tx, CONTROL_T, Fz_Lag_T);
+	TxL_filtered = Filter_TimeLag(TxL_filtered, F_LFoot.tx, CONTROL_T, Fz_Lag_T);
+	TyR_filtered = Filter_TimeLag(TyR_filtered, F_RFoot.ty, CONTROL_T, Fz_Lag_T);
+	TyL_filtered = Filter_TimeLag(TyL_filtered, F_LFoot.ty, CONTROL_T, Fz_Lag_T);
 	zmp_rel.x = ZMP_filtered.x;
 	zmp_rel.y = ZMP_filtered.y;
 	pitch_sen = IMU_filtered.pitch;
@@ -1389,7 +1389,7 @@ void DCC_RunningControl(double pitch_ref, double roll_ref, double  pitch_sen, do
 	
 
 	// rot
-	body_rot_ref.pitch = pitch_ref + p->pitch_bias;
+	body_rot_ref.pitch = pitch_ref + pitch_bias;
 	body_rot_ref.roll  = roll_ref;
 	if (k_pre == 0) {
 		pitch_sen_bias = pitch_sen;
@@ -1422,8 +1422,8 @@ void DCC_RunningControl(double pitch_ref, double roll_ref, double  pitch_sen, do
 	del_theta_rel.roll 		= body_rot_rel.roll - (roll_ref + DCC_Run.BodyRot.roll);
 	
 	// comp
-	Rfoot_rel.pitch = TxR_filtered + p->tau_pitch_bias;		Lfoot_rel.pitch = TxL_filtered + p->tau_pitch_bias;
-	Rfoot_rel.roll	= TyR_filtered - p->tau_roll_bias;		    Lfoot_rel.roll	= TyL_filtered + p->tau_roll_bias;
+	Rfoot_rel.pitch = TxR_filtered + tau_pitch_bias;		Lfoot_rel.pitch = TxL_filtered + tau_pitch_bias;
+	Rfoot_rel.roll	= TyR_filtered - tau_roll_bias;		    Lfoot_rel.roll	= TyL_filtered + tau_roll_bias;
 	Rfoot_rel.z		= FzR_filtered;		Lfoot_rel.z		= FzL_filtered;
 	
 	F_sum = Rfoot_rel.z + Lfoot_rel.z;
@@ -1431,7 +1431,7 @@ void DCC_RunningControl(double pitch_ref, double roll_ref, double  pitch_sen, do
 	#ifdef USE_Run_LIPM
 		LIPM_ConVal = LIPM_Con(LIPM_ConVal, TPC_Run_ConVal, body_rot_ref, body_rot_rel, p->Zc, p->paras_LIPM);									// <- LIPM
 	#endif
-		ADD_Trq_Ref = DCC_BalancePro(LIPM_ConVal, body_rot_ref, body_rot_rel, p->Balance_Pro, p->limit_Pro, F_sum);								// <- Balance Pro
+		ADD_Trq_Ref = DCC_BalancePro(LIPM_ConVal, body_rot_ref, body_rot_rel, Balance_Pro, limit_Pro, F_sum);								// <- Balance Pro
 
 	#ifdef USE_CHZ_RUN
 		// ankle
@@ -1539,7 +1539,7 @@ void DCC_RunningControl(double pitch_ref, double roll_ref, double  pitch_sen, do
 	#else // precon
 		if (Tra_LAnkle.z[k_pre] > H_ANKLE && Tra_RAnkle.z[k_pre] < H_ANKLE + 1e-6) { // R sup
 			if (F_RFoot.fz > 0.1 * m_robot * 9.8) { // R touch
-				Rfoot_ref.pitch = ADD_Trq_Ref.pitch + p->pitch_bias_foot + additor_flag * additor_pit;
+				Rfoot_ref.pitch = ADD_Trq_Ref.pitch + pitch_bias_foot + additor_flag * additor_pit;
 				Rfoot_ref.roll  = ADD_Trq_Ref.roll + additor_flag * additor_rol;
 				Lfoot_ref.pitch = 0.0;
 				Lfoot_ref.roll  = 0.0;
@@ -1557,7 +1557,7 @@ void DCC_RunningControl(double pitch_ref, double roll_ref, double  pitch_sen, do
 		}
 		else if (Tra_LAnkle.z[k_pre] < H_ANKLE + 1e-6 && Tra_RAnkle.z[k_pre] > H_ANKLE) { // L sup
 			if (F_LFoot.fz > 0.1 * m_robot * 9.8) { // L touch
-				Lfoot_ref.pitch = ADD_Trq_Ref.pitch + p->pitch_bias_foot + additor_flag * additor_pit;
+				Lfoot_ref.pitch = ADD_Trq_Ref.pitch + pitch_bias_foot + additor_flag * additor_pit;
 				Lfoot_ref.roll  = ADD_Trq_Ref.roll + additor_flag * additor_rol;
 				Rfoot_ref.pitch = 0.0;
 				Rfoot_ref.roll  = 0.0;
@@ -1574,9 +1574,9 @@ void DCC_RunningControl(double pitch_ref, double roll_ref, double  pitch_sen, do
 			}
 		}
 		else { // D sup
-			Rfoot_ref.pitch = (Tra_ZMP.x[k_pre] + 0.08) / 0.16 * (ADD_Trq_Ref.pitch + additor_flag * additor_pit) + p->pitch_bias_foot;
+			Rfoot_ref.pitch = (Tra_ZMP.x[k_pre] + 0.08) / 0.16 * (ADD_Trq_Ref.pitch + additor_flag * additor_pit) + pitch_bias_foot;
 			Rfoot_ref.roll  = (Tra_ZMP.x[k_pre] + 0.08) / 0.16 * (ADD_Trq_Ref.roll + additor_flag * additor_rol);
-			Lfoot_ref.pitch = (-Tra_ZMP.x[k_pre] + 0.08) / 0.16 * (ADD_Trq_Ref.pitch + additor_flag * additor_pit) + p->pitch_bias_foot;
+			Lfoot_ref.pitch = (-Tra_ZMP.x[k_pre] + 0.08) / 0.16 * (ADD_Trq_Ref.pitch + additor_flag * additor_pit) + pitch_bias_foot;
 			Lfoot_ref.roll  = (-Tra_ZMP.x[k_pre] + 0.08) / 0.16 * (ADD_Trq_Ref.roll + additor_flag * additor_rol);
 			Rfoot_ref.z = (Tra_ZMP.x[k_pre] + 0.08) / 0.16 * m_robot * 9.8;// + ADD_Trq_Ref.z;
 			Lfoot_ref.z = (-Tra_ZMP.x[k_pre] + 0.08) / 0.16 * m_robot * 9.8;// - ADD_Trq_Ref.z;
@@ -1594,7 +1594,7 @@ void DCC_RunningControl(double pitch_ref, double roll_ref, double  pitch_sen, do
 	FzR_ref = Rfoot_ref.z;
 	FzL_ref = Lfoot_ref.z;
 
-	TPC_Run_ConVal = TPC_Run(TPC_Run_ConVal, LIPM_ConVal, zmp_ref, zmp_rel, p->paras_TPC, p->limit_TPC, F_sum);			// <- TPC Con
+	TPC_Run_ConVal = TPC_Run(TPC_Run_ConVal, LIPM_ConVal, zmp_ref, zmp_rel, paras_TPC, limit_TPC, F_sum);			// <- TPC Con
 	// TPCFoot
 #ifdef USE_Foot_TPC
 	double F_check[3] = { 0.0 };
@@ -1610,14 +1610,14 @@ void DCC_RunningControl(double pitch_ref, double roll_ref, double  pitch_sen, do
 	FootCompliance_ConVal = Compliance_Run(FootCompliance_ConVal, Rfoot_ref, Lfoot_ref, Rfoot_rel, Lfoot_rel, p->paras_GRFC, p->limit_GRFC);						// <- Compliance 
 #endif
 																																									// LandRot
-	Ref_RotAndPos_ConVal = LandingBalance_Rot( Ref_RotAndPos_ConVal, Rdel_theta_rel, Ldel_theta_rel, Rdel_dtheta_rel, Ldel_dtheta_rel, zmp_ref, zmp_rel, Rfoot_rel, Lfoot_rel, p->paras_Land, p->limit_Land, p->wake_Land, F_sum, k_pre); // <- Land Balance Rot con
+	Ref_RotAndPos_ConVal = LandingBalance_Rot( Ref_RotAndPos_ConVal, Rdel_theta_rel, Ldel_theta_rel, Rdel_dtheta_rel, Ldel_dtheta_rel, zmp_ref, zmp_rel, Rfoot_rel, Lfoot_rel, paras_Land, limit_Land, wake_Land, F_sum, k_pre); // <- Land Balance Rot con
 	#ifdef USE_Land_RotCon
 		body_rot_ref.pitch += Ref_RotAndPos_ConVal.BodyRot.pitch; // check
 		body_rot_ref.roll  += Ref_RotAndPos_ConVal.BodyRot.roll;  // check
 	#endif
-	BodyRot_ConVal = PostureCon_Run(BodyRot_ConVal, body_rot_ref, body_rot_rel, p->paras_Rot, p->limit_Rot, F_sum);												// <- Posture Con
+	BodyRot_ConVal = PostureCon_Run(BodyRot_ConVal, body_rot_ref, body_rot_rel, paras_Rot, limit_Rot, F_sum);												// <- Posture Con
 	// stepz
-	FlyRot_ConVal = Fly_Rot_Con(FlyRot_ConVal, Rdel_theta_rel, Ldel_theta_rel, del_theta_rel, p->paras_FlyBody, p->limit_FlyBody, p->wake_FlyBody, p->paras_FlyFoot, p->limit_FlyFoot, p->paras_Step, p->limit_Step, F_sum, Rfoot_rel.z, Lfoot_rel.z, k_pre); // <- Fly Con
+	FlyRot_ConVal = Fly_Rot_Con(FlyRot_ConVal, Rdel_theta_rel, Ldel_theta_rel, del_theta_rel, paras_FlyBody, limit_FlyBody, wake_FlyBody, paras_FlyFoot, limit_FlyFoot, paras_Step, limit_Step, F_sum, Rfoot_rel.z, Lfoot_rel.z, k_pre); // <- Fly Con
 #ifdef USE_Contact_Con
 	// Rfoot_ref.z = m_robot * 9.8 * 0.5 + 50 * cos(2 * 3.14 * 1 * k_pre * CONTROL_T); 
 	// Lfoot_ref.z = m_robot * 9.8 * 0.5 + 50 * cos(2 * 3.14 * 1 * k_pre * CONTROL_T);// for test sake

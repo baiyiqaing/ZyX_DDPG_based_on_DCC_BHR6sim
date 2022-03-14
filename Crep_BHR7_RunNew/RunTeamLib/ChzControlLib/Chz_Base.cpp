@@ -116,16 +116,16 @@ void Chz::PerspectiveMapping_Test()
 	std::cout << v1 << std::endl;
 }
 
-int main()
-{
-	//Chz::FootStep_Test();
-	//Chz::Kinematics_Test();
-
-	Matrix3d A1;
-	A1 << 0.0, 0.056, -0.02,
-		0.104, 0.006, -0.042,
-		0.0, 0.0, 1.0;
-	Matrix3d A2 = A1.inverse();
-	cout << A2 << endl;
-}
+//int main()
+//{
+//	//Chz::FootStep_Test();
+//	//Chz::Kinematics_Test();
+//
+//	Matrix3d A1;
+//	A1 << 0.0, 0.056, -0.02,
+//		0.104, 0.006, -0.042,
+//		0.0, 0.0, 1.0;
+//	Matrix3d A2 = A1.inverse();
+//	cout << A2 << endl;
+//}
 #endif
